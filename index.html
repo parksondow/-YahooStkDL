@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahoo股票技術分析工具</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔔 Yahoo股票技術分析工具</h1>
+            <p class="subtitle">專業股票數據分析與技術指標計算</p>
+        </div>
+
+        <div class="input-group">
+            <div class="input-wrapper">
+                <label for="stockSymbol">股票代碼</label>
+                <input type="text" id="stockSymbol" placeholder="例：2330.TW" value="2330.TW">
+            </div>
+            <div class="input-wrapper">
+                <label for="startDate">開始日期</label>
+                <input type="date" id="startDate">
+            </div>
+            <div class="input-wrapper">
+                <label for="endDate">結束日期</label>
+                <input type="date" id="endDate">
+            </div>
+            <button id="fetchData" class="btn-primary">📊 查詢數據</button>
+            <button id="exportCSV" class="btn-success" disabled>📁 導出CSV</button>
+        </div>
+
+        <div id="error" class="error" style="display: none;"></div>
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <span>載入中...</span>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <span class="chart-title">📈 K線圖</span>
+                    <div class="chart-controls">
+                        <button class="btn-small" onclick="resetZoom('stockChart')">重設縮放</button>
+                    </div>
+                </div>
+                <div id="stockChart" class="chart"></div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-header">
+                    <span class="chart-title">📊 成交量</span>
+                </div>
+                <div id="volumeChart" class="chart chart-small"></div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-header">
+                    <span class="chart-title">📉 MACD指標</span>
+                </div>
+                <div id="macdChart" class="chart chart-small"></div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-header">
+                    <span class="chart-title">🔀 KD指標</span>
+                </div>
+                <div id="kdChart" class="chart chart-small"></div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="chart-header">
+                <span class="chart-title">📋 歷史數據</span>
+                <div class="table-controls">
+                    <input type="text" id="searchTable" placeholder="搜尋..." class="search-input">
+                    <select id="pageSize" class="page-select">
+                        <option value="50">50筆/頁</option>
+                        <option value="100">100筆/頁</option>
+                        <option value="200">200筆/頁</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table id="priceTable">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>開盤</th>
+                            <th>最高</th>
+                            <th>最低</th>
+                            <th>收盤</th>
+                            <th>成交量</th>
+                            <th>漲跌</th>
+                            <th>漲跌幅</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button id="prevPage" class="btn-small">上一頁</button>
+                <span id="pageInfo">第 1 頁，共 1 頁</span>
+                <button id="nextPage" class="btn-small">下一頁</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>💡 數據來源：Yahoo Finance | 僅供參考，投資有風險</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

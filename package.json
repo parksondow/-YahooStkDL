@@ -1,0 +1,38 @@
+{
+  "name": "yahoo-stock-technical-analysis",
+  "version": "1.0.0",
+  "description": "專業的Yahoo股票技術分析網頁工具",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8000 -c-1 --cors",
+    "dev": "http-server -p 8000 -c-1 --cors -o",
+    "build": "echo 'Static site - no build needed'",
+    "serve": "python server.py"
+  },
+  "keywords": [
+    "stock",
+    "technical-analysis",
+    "yahoo-finance",
+    "charts",
+    "macd",
+    "kd-indicator",
+    "financial",
+    "trading"
+  ],
+  "author": "VScodeSRC2 Team",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/yahoo-stock-analysis.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/yahoo-stock-analysis/issues"
+  },
+  "homepage": "https://github.com/your-username/yahoo-stock-analysis#readme"
+}
